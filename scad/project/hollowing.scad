@@ -519,7 +519,7 @@ module layer0rearfrontright() {
 
     difference() {
       translate([253,-69.99,-713 + 75 + extraHeight + 0.5]) rotate([0,45,0])  cube([30,15,15]);
-      translate([200,-69.99,-713 + 69 + 0.125 + extraHeight + 0.5]) cube([100,15,15]);
+      translate([200,-69.99,-713 + 69 + 0.125 + extraHeight + 0.25]) cube([100,15,15]);
 
     }
   }
@@ -675,7 +675,7 @@ module layer0rearrearright() {
 //
     //    translate([-500, -500, -818 + extraHeight]) cube([2000, 1000, 180]);
 
-
+//
 translate([0,100,0]) layer0frontleft();
 translate([-100,100,0]) layer0frontleftcover();
 layer0frontmiddle();
@@ -693,6 +693,19 @@ translate([100,-100,0]) layer0rearmiddleright();
 translate([200,100,0]) layer0rearrearleft();
 translate([200,0,0]) layer0rearrearmiddle();
 translate([200,-100,0]) layer0rearrearright();
+
+
+//layer0hollow(
+//  showShell = false,
+//  showPlug = false,
+//  showCover = false,
+//  showSpacers = true,
+//  showConnectors = false,
+//  showSpacersCutout = false
+//);
+
+
+
 //layer0parts(
 //  part0 = true,
 //  part1 = false
@@ -708,32 +721,32 @@ translate([200,-100,0]) layer0rearrearright();
   //translate([274,125.4 - 10,-638-5 -68]) rotate([0,90,90]) cylinder(100, 3, 3);
 
 //
+
 //layer1hollow(
 //  showShell = true,
 //  showPlug = true,
 //  showCover = true,
 //  showSpacers = false,
-//  showAddon = true,
+//  showAddon = false,
 //  showConnectors = true,
 //  showSpacersCutout = false
 //);
-//
-//layer2hollow(
-//  showShell = true,
-//  showPlug = true,
-//  showCover = true,
-//  showSpacers = false,
-//  showAddon = true,
-//  showConnectors = true,
-//  showSpacersCutout = false
-//);
-//
-//layer3hollow(
-//  showShell = true,
-//  showPlug = true,
-//  showCover = true,
-//  showSpacers = false,
-//  showAddon = true,
-//  showConnectors = true,
-//  showSpacersCutout = false
-//);
+/*
+layer2hollow(
+  showShell = true,
+  showPlug = true,
+  showCover = true,
+  showSpacers = false,
+  showAddon = false,
+  showConnectors = true,
+  showSpacersCutout = false
+);*/
+/*layer3hollow(
+  showShell = true,
+  showPlug = true,
+  showCover = true,
+  showSpacers = false,
+  showAddon = false,
+  showConnectors = true,
+  showSpacersCutout = false
+);*/

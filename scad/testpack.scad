@@ -61,7 +61,12 @@ module testPackConnector(tolerance, heightAdditive = 0) {
     translate([-connectorLargeWidth / 2, 0, 0]) polyhedron( CubePoints, CubeFaces );
 }
  
-module testPackHexSubtractive(row, col){
+module testPackHexSubtractive(
+    row,
+    col,
+    connectorFront,
+    connectorLeft
+){
     for (a=[0:row-1]){
         posx=diameter*a; 
         for (b=[0:col-1]){
@@ -71,19 +76,57 @@ module testPackHexSubtractive(row, col){
                translate([posx + rad,posy + rad,-1]) cylinder(h = screwInsertHoleDepth + 1, r = screwInsertHoleDiameter/2);
                 translate([posx + rad,posy + rad,-0.5]) cylinder(h = height + 1, r = shellHoleDiameter/2);
             }
-            if (b > 0 && b < col) {
+            if (b > 0 && b < col && connectorFront) {
                 translate([-rad - 0.01, posy - rad,-0.5]) rotate([0,0,-90]) testPackConnector(0, 1);
-
             }
         }
-        if (a > 0 && a < row) {
+        if (a > 0 && a < row && connectorLeft) {
 
             translate([posx + rad - diameter, -rad - 0.01,-0.5]) testPackConnector(0, 1);
         }
     }
 }
 
-module testPackHexAdditive(row, col) {
+module helperSubtractive(row, col){
+    for (a=[0:row-1]){
+        posx=diameter*a; 
+        for (b=[0:col-1]){
+            posy=diameter*b; 
+            translate([posx,posy,0]) translate([0,0, -0.005]) cylinder(h=height +0.01,d=hole_diam);
+            if(a != row -1 && b != col -1) {
+                translate([posx + rad,posy + rad,-0.01]) cylinder(2.02, 7.7/2, 10/2);
+            }
+
+            translate([posx - 4,posy -0.5 - 7,-0.01]) cube([8,1,2.02]);
+            translate([posx - 4,posy -0.5 + 7,-0.01]) cube([8,1,2.02]);
+            translate([posx - 0.5 - 7,posy - 4,-0.01]) cube([1,8,2.02]);
+            translate([posx - 0.5 + 7,posy - 4,-0.01]) cube([1,8,2.02]);
+
+        }
+    }
+}
+
+
+module testPackHexAdditive(row, col, connectorBack,connectorRight) {
+    if(connectorRight) {
+        for (a=[1:row-1]){
+            posx=diameter*a; 
+            translate([posx + rad - diameter, -rad + diameter * col,0]) testPackConnector(connectorTolerance);
+        }
+    }
+    if(connectorBack) {
+        for (b=[1:col -1]){
+            posy=diameter*b; 
+            translate([row * diameter - rad, posy - rad,0]) rotate([0,0,-90]) testPackConnector(connectorTolerance);
+        }
+    }
+}
+
+module helperAdditive(
+    row,
+    col
+) {
+    
     for (a=[1:row-1]){
         posx=diameter*a; 
         translate([posx + rad - diameter, -rad + diameter * col,0]) testPackConnector(connectorTolerance);
@@ -94,15 +137,77 @@ module testPackHexAdditive(row, col) {
     }
 }
 
-module testPackPack(row, col) {
+module testPackPack(
+    row,
+    col,
+    connectorFront,
+    connectorBack,
+    connectorLeft,
+    connectorRight
+) {
     difference() {
         translate([-0.5* diameter, -0.5* diameter, 0]) cube([diameter * row, diameter*col, height]);
-        testPackHexSubtractive(row, col);
+        testPackHexSubtractive(row, col, connectorFront, connectorLeft);
     }
-    testPackHexAdditive(row, col);
+    testPackHexAdditive(row, col, connectorBack, connectorRight);
 }
       
+module packHelper(row, col) {
+    difference() {
+        translate([-0.5* diameter, -0.5* diameter, 0]) cube([diameter * row, diameter*col, 2]);
+        helperSubtractive(row, col);
+    }
+   // helperAdditive(row, col);
+}
+  
+module packHelperPlug() {
+    difference() {
+        union() {
+            translate([0 + rad,0 + rad,-0.01]) cylinder(2.02, 7.5/2, 9.8/2);
+            translate([0 + rad,0 + rad,2]) cylinder(8, 9.8/2, 9.8/2);
+        }
+        translate([0 + rad,0 + rad,-4]) cylinder(20, 3.3/2, 3.3/2);
 
+    }
+
+
+}
+module packCleaner() {
+    translate([0,0,-35.01]) difference() {
+        scale(0.62681) rotate([0,180,0]) import("./ImageToStl.com_endmill.stl");
+        translate([-50,-50,-55]) cube([100,100,100]);
+        translate([-50,-50,56.5 - 5 + 8]) cube([100,100,100]);
+
+    }
+ 
+    difference() {
+        translate([0,0,0.01]) cylinder(h = 10, r = (inside_diam)/2);
+
+        intersection() {
+            union() {
+                translate([-6.5/2, -6.5/2, 0]) cube([6.5, 6.5, 100]);
+                intersection() {
+                    union() {
+                        rotate([0,90,0]) translate([-4,-6.5/2 + 0.7,-6.5/2 -2]) cylinder(10, r = 2.4/2);
+                        mirror([0,1]) {
+                            rotate([0,90,0]) translate([-4,-6.5/2 + 0.7,-6.5/2 -2]) cylinder(10, r = 2.4/2);
+                        }
+                        rotate([0,90,90]) translate([-4,-6.5/2 + 0.7,-6.5/2 -2]) cylinder(10, r = 2.4/2);
+                        mirror([1,0]) {
+                            rotate([0,90,90]) translate([-4,-6.5/2 + 0.7,-6.5/2 -2]) cylinder(10, r = 2.4/2);
+                        }
+                    }
+                    cylinder(h = 20, r = 3.7);
+                }
+            }
+            cylinder(h = 100, r = 4.4);
+
+        }
+    }
+
+
+
+}
 
 
 //pack
@@ -178,4 +283,41 @@ module connectingSection(length,depth, backWidth) {
     }
     translate([0,shellReachLength + depth,shellThicknessTopBottom/2]) cube([length, backWidth, 70 + shellThicknessTopBottom]);
 }
+/*
+testPackPack(
+    row = 6,
+    col = 9,
+    connectorFront = false,
+    connectorBack = true,
+    connectorLeft = false,
+    connectorRight = true
+);
 
+testPackPack(
+    row = 6,
+    col = 10,
+    connectorFront = false,
+    connectorBack = true,
+    connectorLeft = true,
+    connectorRight = false
+);
+
+testPackPack(
+    row = 7,
+    col = 9,
+    connectorFront = true,
+    connectorBack = false,
+    connectorLeft = false,
+    connectorRight = true
+);*/
+
+//testPackPack(
+//    row = 7,
+//    col = 10,
+//    connectorFront = true,
+//    connectorBack = false,
+//    connectorLeft = true,
+//    connectorRight = false
+//);/**/
+//translate([0,0,10]) packHelper(10,5);
+//packCleaner();

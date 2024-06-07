@@ -29,7 +29,7 @@ module connectingObjects() {
 module connectorPanel() {
     intersection() {
         difference() {
-            cube([100, 100, 6]);
+            cube([110, 100, 6]);
             translate([4.5 + 27.95,4.5 + 37.475,-10]) cylinder(100, 4.5, 4.5);
             translate([4.5 + 27.95,-4.5 + 37.475 + 25.05,-10]) cylinder(100, 4.5, 4.5);
 
@@ -48,10 +48,10 @@ module connectorPanel() {
             translate([50 + 31,50 + 12,-10]) cylinder(100, 3.75/2, 3.75/2);
 
         }
-        rotate([0,23.8,0]) translate([8,20,0]) cube([80 + extraHeight, 60, 100]);
+       rotate([0,23.8,0]) translate([8,20,0]) cube([80 + extraHeight + 0.45, 60, 100]);
     }
     difference() {
-     rotate([0,23.8,0]) translate([8,20,-150]) cube([80  + extraHeight, 60, 200]);
+     rotate([0,23.8,0]) translate([8,20,-150]) cube([80  + extraHeight + 0.45, 60, 200]);
      rotate([0,0,0]) translate([6,00,00]) cube([100, 100, 200]);
 
     }
@@ -87,7 +87,7 @@ module powerPanel(openUnder) {
                             rotate([0,0,0]) translate([6,00,00]) cube([100, 100, 200]);
                         }
                     }
-                    rotate([0,23.8,0]) translate([8,20,0]) translate([0,0,-100]) cube([80 + extraHeight, 60, 200]);
+                    rotate([0,23.8,0]) translate([8,20,0]) translate([0,0,-100]) cube([80 + extraHeight + 0.45, 60, 200]);
                 }
                 if(openUnder) {
                     translate([-15,25,15.01]) cube([100, 15, 15]);
@@ -142,7 +142,7 @@ module powerPanelCover() {
             union() {
                 translate([0,0,30]) cube([200, 100, 5]);
             }
-            rotate([0,23.8,0]) translate([8,20,0]) translate([0,0,-100]) cube([80 + extraHeight, 60, 200]);
+            rotate([0,23.8,0]) translate([8,20,0]) translate([0,0,-100]) cube([80 + extraHeight + 0.5, 60, 200]);
         }
 
         difference() {
@@ -150,8 +150,8 @@ module powerPanelCover() {
             translate([27.4, 100, 30.01]) rotate([90,0,0]) cylinder(100, 5, 5);
         }
         difference() {
-            translate([74 + extraHeight, 0, 84]) rotate([0,58,0]) cube([100, 100,100]);
-            translate([104.4 + extraHeight, 100, 30.01]) rotate([90,0,0]) cylinder(100, 5, 5);
+            translate([74 + extraHeight + 0.87, 0, 84]) rotate([0,58,0]) cube([100, 100,100]);
+            translate([104.4 + extraHeight + 0.87, 100, 30.01]) rotate([90,0,0]) cylinder(100, 5, 5);
         }
         translate([95,50,-100]) translate([0,0, 8.1]) cylinder(150, 3.3/2,3.3/2);
         translate([30,25,-100]) translate([0,0, 8.1]) cylinder(150, 3.3/2,3.3/2);
@@ -184,7 +184,8 @@ module connectorBase(length, singlescrew) {
 
 
                 }
-                translate([1.2 + extraHeight,-2,0]) difference() {
+
+                translate([1.2 + extraHeight + 0.55,-2,0]) difference() {
                     translate([98.5, -100, -50]) rotate([0,0,58]) cube([100, 100,100]);
                     translate([40.28, 0.5, -50]) cylinder(100, 5, 5);
                 }
@@ -211,33 +212,33 @@ module connectorBase(length, singlescrew) {
 
             if(singlescrew) {
                 difference() {
-                    rotate([0,90,23.8]) translate([25,42,-37.9]) cylinder(50, 5,5);
-                    rotate([0,0,23.8]) translate([-15,22,-20]) rotate([0,20,0]) cube([50, 100,20]);
+                    rotate([0,90,23.8]) translate([25 -1,42,-37.9]) cylinder(50, 5,5);
+                    rotate([0,0,23.8]) translate([-15,22,-20]) rotate([0,20,0]) translate([-5,0,0]) cube([55, 100,20]);
                 }
                 difference() {
-                    rotate([0,90,23.8]) translate([-25,42,-37.9]) cylinder(50, 5,5);
-                    rotate([0,0,23.8]) translate([-15,22,-1.3]) rotate([0,-20,0]) cube([50, 100,20]);
+                    rotate([0,90,23.8]) translate([-25 +1,42,-37.9]) cylinder(50, 5,5);
+                    rotate([0,0,23.8]) translate([-15,22,-1.3]) rotate([0,-20,0]) translate([-5,0,0]) cube([55, 100,20]);
                 }
             } else {
 
                 difference() {
-                    rotate([0,90,23.8]) translate([25,32,-37.9]) cylinder(50, 5,5);
-                    rotate([0,0,23.8]) translate([-10,22,-20]) rotate([0,20,0]) cube([50, 100,20]);
+                    rotate([0,90,23.8]) translate([25 -1,32,-37.9]) cylinder(50, 5,5);
+                    rotate([0,0,23.8]) translate([-10,22,-20]) rotate([0,20,0]) translate([-5,0,0]) cube([55, 100,20]);
                 }
                 
                 difference() {
-                    rotate([0,90,23.8]) translate([25,70,-37.9]) cylinder(50, 5,5);
-                    rotate([0,0,23.8]) translate([-17,22,-20]) rotate([0,20,0]) cube([50, 100,20]);
+                    rotate([0,90,23.8]) translate([25 -1,70,-37.9]) cylinder(50, 5,5);
+                    rotate([0,0,23.8]) translate([-17,22,-20]) rotate([0,20,0]) translate([-5,0,0]) cube([55, 100,20]);
                 }
 
                 difference() {
-                    rotate([0,90,23.8]) translate([-25,32,-37.9]) cylinder(50, 5,5);
-                    rotate([0,0,23.8]) translate([-6,22,-0]) rotate([0,-20,0]) cube([50, 100,20]);
+                    rotate([0,90,23.8]) translate([-25 +1,32,-37.9]) cylinder(50, 5,5);
+                    rotate([0,0,23.8]) translate([-6,22,-0]) rotate([0,-20,0]) translate([-5,0,0]) cube([55, 100,20]);
                 }
 
                 difference() {
-                    rotate([0,90,23.8]) translate([-25,70,-37.9]) cylinder(50, 5,5);
-                    rotate([0,0,23.8]) translate([-17,22,-1]) rotate([0,-20,0]) cube([50, 100,20]);
+                    rotate([0,90,23.8]) translate([-25 +1,70,-37.9]) cylinder(50, 5,5);
+                    rotate([0,0,23.8]) translate([-17,22,-1]) rotate([0,-20,0]) translate([-5,0,0]) cube([55, 100,20]);
                 }
             }
 
@@ -295,10 +296,10 @@ module connector(length, showPlug, cover, base, singlescrew) {
                     rotate([0,0,75]) translate([55,20,-50]) cube([100,100,100]);
                 }
             }
-            rotate([0,0,32]) translate([-18,5,-28.45 - 0.1]) cube([10,100,2]);
+            rotate([0,0,32]) translate([-18,4.1,-28.45 - 0.1]) cube([10,100,2]);
             rotate([90,0,32]) translate([-18,15,-6 - 0.1]) cube([5,13.45,2]);
             mirror([0,0,1]){
-                rotate([0,0,32]) translate([-18,5,-28.45 - 0.1]) cube([10,100,2]);
+                rotate([0,0,32]) translate([-18,4.1,-28.45 - 0.1]) cube([10,100,2]);
                 rotate([90,0,32]) translate([-18,15,-6 - 0.1]) cube([5,13.45,2]);
             }
         }
