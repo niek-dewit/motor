@@ -506,32 +506,52 @@ module layer3(showShell, showPlug, showCover, showSpacers, showAddon, showConnec
 
 
 module layer0BottomPlate() {
-    union() {
-        intersection() {
-            layer0(
-                showPlug = false,
-                showCover = false,
-                showSpacers = false,
-                showShell = true
-            );
-            difference() {
-                translate([0,-500,-721.01]) cube([1000,1000,8]);
-                translate([172,-500,-725.01]) cube([100,1000,15]);
-                translate([-200,-229,-725.01]) cube([1000,100,15]);
-                translate([-200,129,-725.01]) cube([1000,100,15]);
-                translate([645,-500,-725.01]) cube([100,1000,15]);
+    difference() {
+        union() {
+            //not sure why this is here
+        // intersection() {
+        //     layer0(
+        //         showPlug = false,
+        //         showCover = false,
+        //         showSpacers = false,
+        //         showShell = true
+        //     );
+        //     difference() {
+        //         translate([0,-500,-721.01]) cube([1000,1000,8]);
+        //         translate([172,-500,-725.01]) cube([100,1000,15]);
+        //         translate([-200,-229,-725.01]) cube([1000,100,15]);
+        //         translate([-200,129,-725.01]) cube([1000,100,15]);
+        //         translate([645,-500,-725.01]) cube([100,1000,15]);
+        //     }
+        // }
+            translate([258,-260,-721.01]) cube([89,520,8]);
+            
+            translate([347,-260,-721.01]) rotate([0,0,45]) cube([230,100,8]);
+            mirror([0,1]){
+                translate([347,-260,-721.01]) rotate([0,0,45]) cube([230,100,8]);
+            }
+            translate([372 - 50,-170,-721.01]) cube([343,340,8]);
+
+        }
+        translate([283,-235,-800]) difference() {
+            translate([-100,-100,0]) cube([100,100,100]);
+            translate([0,0,-1]) cylinder(h = 110, r = 25);
+        }
+        mirror([0,1]) {
+            translate([283,-235,-800]) difference() {
+                translate([-100,-100,0]) cube([100,100,100]);
+                translate([0,0,-1]) cylinder(h = 110, r = 25);
             }
         }
-        translate([258,-260,-721.01]) cube([89,520,8]);
-        
-        translate([347,-260,-721.01]) rotate([0,0,45]) cube([230,100,8]);
-        mirror([0,1]){
-            translate([347,-260,-721.01]) rotate([0,0,45]) cube([230,100,8]);
-        }
-        translate([372,-170,-721.01]) cube([283,340,8]);
-
     }
+
 }
+
+module layer0TopPlate() {
+    translate([258,-129,-637-5+ extraHeight - 0.5]) cube([387,258,5]);
+
+}
+
 
 module layer1BottomPlate() {
     union() {
@@ -814,8 +834,8 @@ module layer3TopPlate() {
 //color("#7c7f94") connectingObjects();
 //mirror([0,1]) {
 //    color("#7c7f94") connectingObjects();
-//}
-
+//}//
+//
  //difference() {
  //    layer0(
  //        showPlug = false,
@@ -833,37 +853,37 @@ module layer3TopPlate() {
  //    );
  //    translate([0,-500,-721.01 - 50]) cube([1000,1000,8 + 50]);
  //}
+//
 
-
-//projection() {
-//layer0BottomPlate();
-//}
+projection() {
+    layer0TopPlate();
+}
 
 //difference() {
+//   layer1(
+//       showPlug = false,
+//       showCover = false,
+//       showSpacers = false,
+//       showAddon = false,
+//       showConnectors = false,
+//       showShell = true
+//   );
+//
 //    layer1(
 //        showPlug = false,
 //        showCover = false,
-//        showSpacers = false,
+//        showSpacers = true,
 //        showAddon = false,
 //        showConnectors = false,
-//        showShell = true
+//        showShell = false,
+//        showSpacersCutout = true
 //    );
-
-   // layer1(
-   //     showPlug = false,
-   //     showCover = false,
-   //     showSpacers = true,
-   //     showAddon = false,
-   //     showConnectors = false,
-   //     showShell = false,
-   //     showSpacersCutout = true
-   // );
-   // layer1BottomPlate();
-   // layer1TopPlate();
+//    layer1BottomPlate();
+//    layer1TopPlate();
 //}
-    //layer1BottomPlate();
-  //  layer1TopPlate();
-
+//    //layer1BottomPlate();
+//  //  layer1TopPlate();
+//
 /*
 difference() {
     layer2(

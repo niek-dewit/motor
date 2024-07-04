@@ -357,8 +357,7 @@ module renderLayer5Shell() {
     }
 }
 
-
-
+//import("../frame-area6.stl", convexity=3);
 
 /* shell shape
 transparancy = 0.01;

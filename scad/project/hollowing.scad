@@ -32,10 +32,10 @@ module layer1hollow(showShell, showPlug, showCover, showSpacers, showAddon, show
     }
 
     if(showShell) {
-      color("magenta", 1)  import("./shell-outside/layer1-base-hollow.stl", convexity=3);
+     import("./shell-outside/layer1-base-hollow.stl", convexity=3);
     }
     if(showAddon) {
-      color("magenta", 1)  import("./shell-outside/layer1-addon-hollow.stl", convexity=3);
+       import("./shell-outside/layer1-addon-hollow.stl", convexity=3);
     }
 }
 
@@ -75,7 +75,7 @@ module layer3hollow(showShell, showPlug, showCover, showSpacers, showAddon, show
     }
 }
 
-//color("#292928",1)/*color("red")*/  import("./renders/frame.stl", convexity=3);
+ //color("red")  import("./renders/frame.stl", convexity=3);
 //translate([515,115,-1040]) rotate([90,0,177]) scale(990) color("#696968") import("./scan.stl", convexity=3);
 //translate([275,-150,-638-5 - 65 - 2.5]) cube([100, 300, 65]);
 
@@ -676,31 +676,31 @@ module layer0rearrearright() {
     //    translate([-500, -500, -818 + extraHeight]) cube([2000, 1000, 180]);
 
 //
-translate([0,100,0]) layer0frontleft();
-translate([-100,100,0]) layer0frontleftcover();
-layer0frontmiddle();
-translate([0,-100,0]) layer0frontright();
-translate([0,-100,-100]) layer0frontrightcover();
-
-translate([0,100,0]) layer0rearfrontleft();
-layer0rearfrontmiddle();
-translate([0,-100,0]) layer0rearfrontright();
-
-translate([100,100,0]) layer0rearmiddleleft();
-
-translate([100,-100,0]) layer0rearmiddleright();
-
-translate([200,100,0]) layer0rearrearleft();
-translate([200,0,0]) layer0rearrearmiddle();
-translate([200,-100,0]) layer0rearrearright();
+//translate([0,100,0]) layer0frontleft();
+//translate([-100,100,0]) layer0frontleftcover();
+//layer0frontmiddle();
+//translate([0,-100,0]) layer0frontright();
+//translate([0,-100,-100]) layer0frontrightcover();
+//
+//translate([0,100,0]) layer0rearfrontleft();
+//layer0rearfrontmiddle();
+//translate([0,-100,0]) layer0rearfrontright();
+////
+//translate([100,100,0]) layer0rearmiddleleft();
+////
+//translate([100,-100,0]) layer0rearmiddleright();
+////
+//translate([200,100,0]) layer0rearrearleft();
+//translate([200,0,0]) layer0rearrearmiddle();
+//translate([200,-100,0]) layer0rearrearright();
 
 
 //layer0hollow(
-//  showShell = false,
+//  showShell = true,
 //  showPlug = false,
 //  showCover = false,
-//  showSpacers = true,
-//  showConnectors = false,
+//  showSpacers = false,
+//  showConnectors = true,
 //  showSpacersCutout = false
 //);
 
@@ -710,7 +710,7 @@ translate([200,-100,0]) layer0rearrearright();
 //  part0 = true,
 //  part1 = false
 //);
-//
+////
 //translate([-100, 0, 0]) layer0parts(
 //  part0 = false,
 //  part1 = true
@@ -721,32 +721,32 @@ translate([200,-100,0]) layer0rearrearright();
   //translate([274,125.4 - 10,-638-5 -68]) rotate([0,90,90]) cylinder(100, 3, 3);
 
 //
-
-//layer1hollow(
-//  showShell = true,
-//  showPlug = true,
-//  showCover = true,
-//  showSpacers = false,
-//  showAddon = false,
-//  showConnectors = true,
-//  showSpacersCutout = false
-//);
 /*
-layer2hollow(
+layer1hollow(
   showShell = true,
-  showPlug = true,
-  showCover = true,
+  showPlug = false,
+  showCover = false,
   showSpacers = false,
-  showAddon = false,
+  showAddon = true,
   showConnectors = true,
   showSpacersCutout = false
-);*/
-/*layer3hollow(
+);
+
+layer2hollow(
   showShell = true,
-  showPlug = true,
-  showCover = true,
+  showPlug = false,
+  showCover = false,
   showSpacers = false,
-  showAddon = false,
+  showAddon = true,
+  showConnectors = true,
+  showSpacersCutout = false
+);
+layer3hollow(
+  showShell = true,
+  showPlug = false,
+  showCover = false,
+  showSpacers = false,
+  showAddon = true,
   showConnectors = true,
   showSpacersCutout = false
 );*/
